@@ -35,13 +35,13 @@
             />
           </div>
           <div class="form-group">
-            <label for="streeNumber">Kadun numero</label>
+            <label for="streetNumber">Kadun numero</label>
             <input
               type="text"
-              name="streeNumber"
-              id="streeNumber"
+              name="streetNumber"
+              id="streetNumber"
               class="form-control"
-              v-model="housingAssociation.streeNumber"
+              v-model="housingAssociation.streetNumber"
             />
           </div>
           <div class="form-group">
@@ -72,11 +72,17 @@
           </div>
         </div>
       </form>
+      <div v-if="submitResponse.show">
+        <p>Message: {{ submitResponse.message }}</p>
+        <p>Status: {{ submitResponse.status }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -84,9 +90,14 @@ export default {
         name: "",
         businessId: "",
         street: "",
-        streetNumber: 0,
+        streetNumber: "",
         postalCode: "",
         city: ""
+      },
+      submitResponse: {
+        message: "",
+        status: "",
+        show: false
       }
     };
   },
@@ -95,11 +106,37 @@ export default {
       this.housingAssociation.name = "";
       this.housingAssociation.businessId = "";
       this.housingAssociation.street = "";
-      this.housingAssociation.streetNumber = 0;
+      this.housingAssociation.streetNumber = "";
       this.housingAssociation.postalCode = "";
       this.housingAssociation.city = "";
     },
-    onSubmit() {}
+    addHousingAssociation(payload) {
+      const path = "http://localhost:5000/housing_associations";
+      axios
+        .post(path, payload)
+        .then(res => {
+          this.$emit("haAdded");
+
+          this.submitResponse.message = res.data.message;
+          this.submitResponse.status = res.data.status;
+          this.submitResponse.show = true;
+        })
+        .catch(error => {
+          // eslint-disable-next-line
+          console.error(error);
+        });
+    },
+    onSubmit() {
+      const payload = {
+        name: this.housingAssociation.name,
+        businessId: this.housingAssociation.businessId,
+        street: this.housingAssociation.street,
+        streetNumber: this.housingAssociation.streetNumber,
+        postalCode: this.housingAssociation.postalCode,
+        city: this.housingAssociation.city
+      };
+      this.addHousingAssociation(payload);
+    }
   }
 };
 </script>

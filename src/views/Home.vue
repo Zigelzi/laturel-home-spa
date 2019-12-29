@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <AddHousingAsso />
+    <AddHousingAsso @haAdded="getHousingAssociations()" />
     <HousingAssociation
       v-for="(ha, index) in housingAssociations"
       :key="index"
@@ -29,7 +29,7 @@ export default {
       axios
         .get(path)
         .then(res => {
-          // On successfull response add the retrieved data to housingAssociations array
+          // On successful response add the retrieved data to housingAssociations array
           this.housingAssociations = res.data.housingAssociations;
         })
         .catch(error => {
