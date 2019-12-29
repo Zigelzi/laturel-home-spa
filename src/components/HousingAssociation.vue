@@ -5,11 +5,11 @@
         <div class="card house-association">
           <div class="card-body">
             <h1 class="card-title">{{ housingAssociation.name }}</h1>
-            <p class="card-text">{{ housingAssociation.businessId }}</p>
+            <p class="card-text">{{ housingAssociation.business_id }}</p>
             <p class="card-text">
               {{ housingAssociation.street }}
-              {{ housingAssociation.streetNumber }},
-              {{ housingAssociation.postalCode }} {{ housingAssociation.city }}
+              {{ housingAssociation.street_number }},
+              {{ housingAssociation.postal_code }} {{ housingAssociation.city }}
             </p>
           </div>
         </div>
