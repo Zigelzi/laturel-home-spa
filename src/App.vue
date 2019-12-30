@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Nav />
-    <router-view />
+    <div class="l-main-container">
+      <router-view />
+    </div>
   </div>
 </template>
 

@@ -1,0 +1,68 @@
+// ===================
+// Components
+// ===================
+
+// Navigation components
+.l-nav-container {
+    // Main container for the navigation
+    position: fixed;
+    height: 100%;
+    background: $primary-blue-600;
+    width: $nav-width;
+    max-width: $nav-width;
+    z-index: 10;
+    transition: all .3s ease-in-out;
+
+    .l-nav__title {
+        font-size: 24px;
+        margin: 20px 0 50px 0;
+    }
+}
+
+.l-nav__nav--minimized {
+    // Toggle class for minifying the nav-bar
+    max-width: 50px;
+
+    .l-nav-menu {
+        // Hide the menu text when minifying the nav
+        // TODO: Only show icons when minifying nav
+        display: none;
+    }
+
+    .l-nav__title {
+        display: none;
+    }
+}
+
+.l-nav-menu {
+    // The <ul> element containing the nav menu and nav items
+    margin: 0 auto;
+    padding: 0;
+    height: 50px;
+
+    .l-nav__nav-item {
+        text-decoration: none;
+        list-style: none;
+        font-size: 18px;
+        background: $primary-blue-500;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.l-nav__nav-close {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $gray-800;
+    cursor: pointer;
+}
+
+// Main container and sections
+
+.l-main-container {
+    margin-left: $nav-width;
+}

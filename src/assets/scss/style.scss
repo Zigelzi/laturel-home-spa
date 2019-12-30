@@ -1,0 +1,13 @@
+// ===================
+// Partial imports
+// ===================
+
+// This project uses BEM (Block Element Modifier) naming convention scaled to small projects
+
+// Base styles, reset and variables
+@import 'base/variables',
+        'base/base',
+        'base/normalize';
+
+// Components and animations
+@import 'components/components';

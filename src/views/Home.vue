@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="">
     <AddHousingAsso @haAdded="getHousingAssociations()" />
     <HousingAssociation
       v-for="(ha, index) in housingAssociations"
