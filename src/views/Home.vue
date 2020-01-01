@@ -1,6 +1,5 @@
 <template>
   <div id="home" class="">
-    <AddHousingAsso @haAdded="getHousingAssociations()" />
     <HousingAssociation
       v-for="(ha, index) in housingAssociations"
       :key="index"
@@ -13,7 +12,6 @@
 import axios from "axios";
 // @ is an alias to /src
 import HousingAssociation from "@/components/HousingAssociation.vue";
-import AddHousingAsso from "@/components/AddHousingAsso.vue";
 
 export default {
   name: "home",
@@ -39,8 +37,7 @@ export default {
     }
   },
   components: {
-    HousingAssociation,
-    AddHousingAsso
+    HousingAssociation
   },
   created() {
     this.getHousingAssociations();
