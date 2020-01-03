@@ -4,35 +4,48 @@
       <form action="">
         <div class="col">
           <h1>Lisää uusi taloyhtiö</h1>
-          <TextInput :inputName="name" v-model="housingAssociation.name"
+          <TextInput inputName="name" v-model="housingAssociation.name"
             >Taloyhtiön nimi</TextInput
           >
           <TextInput
-            :inputName="businessId"
+            inputName="businessId"
             v-model="housingAssociation.businessId"
             >Y-Tunnus</TextInput
           >
-          <TextInput :inputName="street" v-model="housingAssociation.street"
+          <TextInput inputName="street" v-model="housingAssociation.street"
             >Katu</TextInput
           >
-          <div class="form-group">
-            <label for="streetNumber">Kadun numero</label>
-            <input
-              type="text"
-              name="streetNumber"
-              id="streetNumber"
-              class="form-control"
-              v-model="housingAssociation.streetNumber"
-            />
-          </div>
+          <NumberInput
+            inputName="streetNumber"
+            v-model="housingAssociation.streetNumber"
+            >Kadun numero</NumberInput
+          >
           <TextInput
-            :inputName="postalCode"
+            inputName="postalCode"
             v-model="housingAssociation.postalCode"
             >Postinumero</TextInput
           >
-          <TextInput :inputName="city" v-model="housingAssociation.city"
+          <TextInput inputName="city" v-model="housingAssociation.city"
             >Kaupunki</TextInput
           >
+          <NumberInput
+            @input="createAlphabet(buildings.count)"
+            inputName="buildingCount"
+            v-model="buildings.count"
+            >Kuinka monta asuntoa taloyhtiössä on?</NumberInput
+          >
+
+          <div
+            v-for="(building, index) in buildings.buildingArray"
+            :key="index"
+          >
+            Rakennus {{ building.buildingLetter }}
+            <NumberInput
+              :inputName="apartmentCount"
+              v-model="building.apartmentCount"
+              >Asuntoja</NumberInput
+            >
+          </div>
           <input
             type="submit"
             value="Lähetä"
@@ -52,10 +65,12 @@
 <script>
 import axios from "axios";
 import TextInput from "@/components/TextInput";
+import NumberInput from "@/components/NumberInput";
 
 export default {
   components: {
-    TextInput
+    TextInput,
+    NumberInput
   },
   data() {
     return {
@@ -67,6 +82,10 @@ export default {
         postalCode: "",
         city: ""
       },
+      buildings: {
+        count: null,
+        buildingArray: []
+      },
       submitResponse: {
         message: "",
         status: "",
@@ -76,6 +95,7 @@ export default {
   },
   methods: {
     initForm() {
+      // Initialize the form with empty values
       this.housingAssociation.name = "";
       this.housingAssociation.businessId = "";
       this.housingAssociation.street = "";
@@ -84,6 +104,7 @@ export default {
       this.housingAssociation.city = "";
     },
     addHousingAssociation(payload) {
+      // Sending form data to API to be added into DB
       const path = "http://localhost:5000/housing_associations";
       axios
         .post(path, payload)
@@ -100,6 +121,7 @@ export default {
         });
     },
     onSubmit() {
+      // Create payload object from form data
       const payload = {
         name: this.housingAssociation.name,
         businessId: this.housingAssociation.businessId,
@@ -109,6 +131,19 @@ export default {
         city: this.housingAssociation.city
       };
       this.addHousingAssociation(payload);
+    },
+    createAlphabet(count) {
+      // Create the amount of letters of alphabet for buildings names
+      const buildingArray = [];
+      let i = 0;
+      if (count <= 26) {
+        for (i = 0; i < count; i++) {
+          let character = (i + 10).toString(36);
+          character = character.toUpperCase();
+          buildingArray.push({ buildingLetter: character, apartmentCount: 0 });
+        }
+        this.buildings.buildingArray = [...buildingArray];
+      }
     }
   }
 };
