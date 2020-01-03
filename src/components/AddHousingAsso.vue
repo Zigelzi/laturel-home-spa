@@ -4,36 +4,17 @@
       <form action="">
         <div class="col">
           <h1>Lisää uusi taloyhtiö</h1>
-          <div class="form-group">
-            <label for="name">Taloyhtiön nimi</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              class="form-control"
-              v-model="housingAssociation.name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="businessId">Y-tunnus</label>
-            <input
-              type="text"
-              name=""
-              id="businessId"
-              class="form-control"
-              v-model="housingAssociation.businessId"
-            />
-          </div>
-          <div class="form-group">
-            <label for="street">Katu</label>
-            <input
-              type="text"
-              name="street"
-              id="street"
-              class="form-control"
-              v-model="housingAssociation.street"
-            />
-          </div>
+          <TextInput :inputName="name" v-model="housingAssociation.name"
+            >Taloyhtiön nimi</TextInput
+          >
+          <TextInput
+            :inputName="businessId"
+            v-model="housingAssociation.businessId"
+            >Y-Tunnus</TextInput
+          >
+          <TextInput :inputName="street" v-model="housingAssociation.street"
+            >Katu</TextInput
+          >
           <div class="form-group">
             <label for="streetNumber">Kadun numero</label>
             <input
@@ -44,32 +25,20 @@
               v-model="housingAssociation.streetNumber"
             />
           </div>
-          <div class="form-group">
-            <label for="postalCode">Postinumero</label>
-            <input
-              type="text"
-              name="postalCode"
-              id="postalCode"
-              class="form-control"
-              v-model="housingAssociation.postalCode"
-            />
-          </div>
-          <div class="form-group">
-            <label for="city">Kaupunki</label>
-            <input
-              type="text"
-              name="city"
-              id="city"
-              class="form-control"
-              v-model="housingAssociation.city"
-            />
-            <input
-              type="submit"
-              value="Lähetä"
-              class="btn btn-primary"
-              @click.prevent="onSubmit()"
-            />
-          </div>
+          <TextInput
+            :inputName="postalCode"
+            v-model="housingAssociation.postalCode"
+            >Postinumero</TextInput
+          >
+          <TextInput :inputName="city" v-model="housingAssociation.city"
+            >Kaupunki</TextInput
+          >
+          <input
+            type="submit"
+            value="Lähetä"
+            class="btn btn-primary"
+            @click.prevent="onSubmit()"
+          />
         </div>
       </form>
       <div v-if="submitResponse.show">
@@ -82,8 +51,12 @@
 
 <script>
 import axios from "axios";
+import TextInput from "@/components/TextInput";
 
 export default {
+  components: {
+    TextInput
+  },
   data() {
     return {
       housingAssociation: {
