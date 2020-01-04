@@ -3,15 +3,8 @@
     <Message
       v-if="showMessage"
       :response="response"
-      @messageCleared="resetResponse()"
+      @messageCleared="resetResponseMessage()"
     />
-    <div class="messages" v-if="showMessage">
-      <p>Status: {{ response.status }}</p>
-      <p>Message: {{ response.message }}</p>
-      <button class="btn btn-primary" @click="hideMessage()">
-        Clear
-      </button>
-    </div>
     <AddHousingAsso @haAdd="updateMessages($event)" />
   </div>
 </template>
@@ -36,7 +29,7 @@ export default {
       this.response = response;
       this.showMessage = true;
     },
-    resetResponse() {
+    resetResponseMessage() {
       this.response = {};
       this.showMessage = false;
     }

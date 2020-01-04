@@ -3,7 +3,7 @@
     <Message
       v-if="showMessage"
       :response="response"
-      @messageCleared="resetResponse()"
+      @messageCleared="resetResponseMessage()"
     />
     <HousingAssociation
       v-for="(ha, index) in housingAssociations"
@@ -11,6 +11,7 @@
       :housingAssociation="ha"
       @haDelete="updateHousingAssociations($event)"
     />
+    {{ housingAssociations }}
   </div>
 </template>
 
@@ -53,7 +54,7 @@ export default {
       this.response = response;
       this.showMessage = true;
     },
-    resetResponse() {
+    resetResponseMessage() {
       this.response = {};
       this.showMessage = false;
     }

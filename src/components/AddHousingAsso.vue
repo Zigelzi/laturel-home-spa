@@ -29,14 +29,15 @@
             >Kaupunki</TextInput
           >
           <NumberInput
-            @input="createAlphabet(buildings.count)"
+            @input="createAlphabet(housingAssociation.buildings.count)"
             inputName="buildingCount"
-            v-model="buildings.count"
+            v-model="housingAssociation.buildings.count"
             >Kuinka monta asuntoa taloyhtiössä on?</NumberInput
           >
 
           <div
-            v-for="(building, index) in buildings.buildingArray"
+            v-for="(building, index) in housingAssociation.buildings
+              .buildingArray"
             :key="index"
           >
             Rakennus {{ building.buildingLetter }}
@@ -76,11 +77,11 @@ export default {
         street: "",
         streetNumber: "",
         postalCode: "",
-        city: ""
-      },
-      buildings: {
-        count: null,
-        buildingArray: []
+        city: "",
+        buildings: {
+          count: null,
+          buildingArray: []
+        }
       }
     };
   },
@@ -93,6 +94,8 @@ export default {
       this.housingAssociation.streetNumber = "";
       this.housingAssociation.postalCode = "";
       this.housingAssociation.city = "";
+      this.housingAssociation.buildings.count = null;
+      this.housingAssociation.buildings.buildingArray = [];
     },
     addHousingAssociation(payload) {
       // Sending form data to API to be added into DB
@@ -114,14 +117,7 @@ export default {
     },
     onSubmit() {
       // Create payload object from form data
-      const payload = {
-        name: this.housingAssociation.name,
-        businessId: this.housingAssociation.businessId,
-        street: this.housingAssociation.street,
-        streetNumber: this.housingAssociation.streetNumber,
-        postalCode: this.housingAssociation.postalCode,
-        city: this.housingAssociation.city
-      };
+      const payload = { ...this.housingAssociation };
       this.addHousingAssociation(payload).then(success => {
         // Check if the backend replies with status: success and if it does, clear the form.
         if (success) {
@@ -139,7 +135,7 @@ export default {
           character = character.toUpperCase();
           buildingArray.push({ buildingLetter: character, apartmentCount: 0 });
         }
-        this.buildings.buildingArray = [...buildingArray];
+        this.housingAssociation.buildings.buildingArray = [...buildingArray];
       }
     }
   }
