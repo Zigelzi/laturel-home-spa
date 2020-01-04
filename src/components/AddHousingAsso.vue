@@ -54,10 +54,6 @@
           />
         </div>
       </form>
-      <div v-if="submitResponse.show">
-        <p>Message: {{ submitResponse.message }}</p>
-        <p>Status: {{ submitResponse.status }}</p>
-      </div>
     </div>
   </div>
 </template>
@@ -85,11 +81,6 @@ export default {
       buildings: {
         count: null,
         buildingArray: []
-      },
-      submitResponse: {
-        message: "",
-        status: "",
-        show: false
       }
     };
   },
@@ -105,19 +96,20 @@ export default {
     },
     addHousingAssociation(payload) {
       // Sending form data to API to be added into DB
-      const path = "http://localhost:5000/housing_associations";
-      axios
+      const path = "/ha/get_all";
+      return axios
         .post(path, payload)
         .then(res => {
-          this.$emit("haAdded");
-
-          this.submitResponse.message = res.data.message;
-          this.submitResponse.status = res.data.status;
-          this.submitResponse.show = true;
+          this.$emit("haAdd", res.data);
+          if (res.data.status == "success") {
+            return true;
+          } else {
+            return false;
+          }
         })
         .catch(error => {
           // eslint-disable-next-line
-          console.error(error);
+            console.error(error);
         });
     },
     onSubmit() {
@@ -130,7 +122,12 @@ export default {
         postalCode: this.housingAssociation.postalCode,
         city: this.housingAssociation.city
       };
-      this.addHousingAssociation(payload);
+      this.addHousingAssociation(payload).then(success => {
+        // Check if the backend replies with status: success and if it does, clear the form.
+        if (success) {
+          this.initForm();
+        }
+      });
     },
     createAlphabet(count) {
       // Create the amount of letters of alphabet for buildings names

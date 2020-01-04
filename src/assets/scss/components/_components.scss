@@ -66,3 +66,12 @@
 .l-main-container {
     margin-left: $nav-width;
 }
+
+.messages {
+    // Container for displaying all messages returned by API
+    max-width: 400px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid gray;
+}

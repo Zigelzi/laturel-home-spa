@@ -11,6 +11,9 @@
               {{ housingAssociation.street_number }},
               {{ housingAssociation.postal_code }} {{ housingAssociation.city }}
             </p>
+            <button class="btn btn-danger" @click="deleteHousingAssociation()">
+              Poista
+            </button>
           </div>
         </div>
       </div>
@@ -19,9 +22,27 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: {
     housingAssociation: Object
+  },
+  methods: {
+    deleteHousingAssociation() {
+      // Delete the selected housing association.
+      const path = "/ha/";
+      axios
+        .delete(path + this.housingAssociation.id)
+        .then(res => {
+          this.$emit("haDelete", res.data);
+        })
+        .catch(error => {
+          //eslint-disable-next-line
+          console.error(error);
+          this.$emit("haDelete");
+        });
+    }
   }
 };
 </script>
@@ -30,5 +51,6 @@ export default {
 .house-association {
   background: #fefefe;
   max-width: 400px;
+  margin-bottom: 10px;
 }
 </style>

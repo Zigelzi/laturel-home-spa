@@ -1,9 +1,15 @@
 <template>
   <div id="home" class="">
+    <Message
+      v-if="showMessage"
+      :response="response"
+      @messageCleared="resetResponse()"
+    />
     <HousingAssociation
       v-for="(ha, index) in housingAssociations"
       :key="index"
       :housingAssociation="ha"
+      @haDelete="updateHousingAssociations($event)"
     />
   </div>
 </template>
@@ -11,19 +17,26 @@
 <script>
 import axios from "axios";
 // @ is an alias to /src
-import HousingAssociation from "@/components/HousingAssociation.vue";
+import HousingAssociation from "@/components/HousingAssociation";
+import Message from "@/components/Message";
 
 export default {
   name: "home",
+  components: {
+    HousingAssociation,
+    Message
+  },
   data() {
     return {
-      housingAssociations: []
+      housingAssociations: [],
+      response: {},
+      showMessage: false
     };
   },
   methods: {
     getHousingAssociations() {
       // Get the existing housing associations from the database and add them to the data property
-      const path = "http://localhost:5000/housing_associations";
+      const path = "/ha/get_all";
       axios
         .get(path)
         .then(res => {
@@ -34,10 +47,16 @@ export default {
           // eslint-disable-next-line
           console.error(error)
         });
+    },
+    updateHousingAssociations(response) {
+      this.getHousingAssociations();
+      this.response = response;
+      this.showMessage = true;
+    },
+    resetResponse() {
+      this.response = {};
+      this.showMessage = false;
     }
-  },
-  components: {
-    HousingAssociation
   },
   created() {
     this.getHousingAssociations();
