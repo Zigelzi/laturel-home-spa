@@ -8,42 +8,41 @@
             >Taloyhtiön nimi</TextInput
           >
           <TextInput
-            inputName="businessId"
-            v-model="housingAssociation.businessId"
+            inputName="business_id"
+            v-model="housingAssociation.business_id"
             >Y-Tunnus</TextInput
           >
           <TextInput inputName="street" v-model="housingAssociation.street"
             >Katu</TextInput
           >
           <NumberInput
-            inputName="streetNumber"
-            v-model="housingAssociation.streetNumber"
+            inputName="street_number"
+            v-model="housingAssociation.street_number"
             >Kadun numero</NumberInput
           >
           <TextInput
-            inputName="postalCode"
-            v-model="housingAssociation.postalCode"
+            inputName="postal_code"
+            v-model="housingAssociation.postal_code"
             >Postinumero</TextInput
           >
           <TextInput inputName="city" v-model="housingAssociation.city"
             >Kaupunki</TextInput
           >
           <NumberInput
-            @input="createAlphabet(housingAssociation.buildings.count)"
-            inputName="buildingCount"
-            v-model="housingAssociation.buildings.count"
+            @input="createAlphabet(housingAssociation.building_count)"
+            inputName="building_count"
+            v-model="housingAssociation.building_count"
             >Kuinka monta asuntoa taloyhtiössä on?</NumberInput
           >
 
           <div
-            v-for="(building, index) in housingAssociation.buildings
-              .buildingArray"
+            v-for="(building, index) in housingAssociation.buildings"
             :key="index"
           >
-            Rakennus {{ building.buildingLetter }}
+            Rakennus {{ building.building_name }}
             <NumberInput
-              :inputName="apartmentCount"
-              v-model="building.apartmentCount"
+              :inputName="apartment_count"
+              v-model="building.apartment_count"
               >Asuntoja</NumberInput
             >
           </div>
@@ -73,15 +72,13 @@ export default {
     return {
       housingAssociation: {
         name: "",
-        businessId: "",
+        business_id: "",
         street: "",
-        streetNumber: "",
-        postalCode: "",
+        street_number: "",
+        postal_code: "",
         city: "",
-        buildings: {
-          count: null,
-          buildingArray: []
-        }
+        building_count: null,
+        buildings: []
       }
     };
   },
@@ -89,13 +86,13 @@ export default {
     initForm() {
       // Initialize the form with empty values
       this.housingAssociation.name = "";
-      this.housingAssociation.businessId = "";
+      this.housingAssociation.business_id = "";
       this.housingAssociation.street = "";
-      this.housingAssociation.streetNumber = "";
-      this.housingAssociation.postalCode = "";
+      this.housingAssociation.street_number = "";
+      this.housingAssociation.postal_code = "";
       this.housingAssociation.city = "";
-      this.housingAssociation.buildings.count = null;
-      this.housingAssociation.buildings.buildingArray = [];
+      this.housingAssociation.building_count = null;
+      this.housingAssociation.buildings = [];
     },
     addHousingAssociation(payload) {
       // Sending form data to API to be added into DB
@@ -133,9 +130,14 @@ export default {
         for (i = 0; i < count; i++) {
           let character = (i + 10).toString(36);
           character = character.toUpperCase();
-          buildingArray.push({ buildingLetter: character, apartmentCount: 0 });
+          buildingArray.push({
+            building_name: character,
+            apartment_count: 0
+          });
         }
-        this.housingAssociation.buildings.buildingArray = [...buildingArray];
+        // eslint-disable-next-line
+        console.log(buildingArray);
+        this.housingAssociation.buildings = [...buildingArray];
       }
     }
   }

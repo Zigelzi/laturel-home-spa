@@ -6,18 +6,22 @@
       @messageCleared="resetResponseMessage()"
     />
     <AddHousingAsso @haAdd="updateMessages($event)" />
+    <AddUser @userAdd="updateMessages($event)" />
   </div>
 </template>
 
 <script>
 import AddHousingAsso from "@/components/AddHousingAsso";
 import Message from "@/components/Message";
+import AddUser from "@/components/AddUser";
 
 export default {
   components: {
     AddHousingAsso,
-    Message
+    Message,
+    AddUser
   },
+
   data() {
     return {
       response: {},
