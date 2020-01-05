@@ -39,7 +39,10 @@ export default {
       return axios
         .post(path, payload)
         .then(res => {
-          this.$emit("userAdd", res.data);
+          if (res.data) {
+            this.$store.state.showBackendMessage = true;
+            this.$store.state.backendResponse = res.data;
+          }
           if (res.data.status == "success") {
             return true;
           } else {

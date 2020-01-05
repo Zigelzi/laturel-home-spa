@@ -1,7 +1,7 @@
 <template>
-  <div class="messages">
-    <p>Status: {{ response.status }}</p>
-    <p>Message: {{ response.message }}</p>
+  <div class="messages" v-if="showBackendMessage">
+    <p>Status: {{ backendResponse.status }}</p>
+    <p>Message: {{ backendResponse.message }}</p>
     <button class="btn btn-primary" @click="hideMessage()">
       Clear
     </button>
@@ -10,12 +10,17 @@
 
 <script>
 export default {
-  props: {
-    response: Object
+  computed: {
+    backendResponse() {
+      return this.$store.state.backendResponse;
+    },
+    showBackendMessage() {
+      return this.$store.state.showBackendMessage;
+    }
   },
   methods: {
     hideMessage() {
-      this.$emit("messageCleared");
+      this.$store.state.showBackendMessage = false;
     }
   }
 };

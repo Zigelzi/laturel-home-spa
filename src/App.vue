@@ -2,15 +2,17 @@
   <div id="app">
     <Nav />
     <div class="l-main-container">
+      <Message />
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
+import Nav from "@/components/Nav";
+import Message from "@/components/Message";
 export default {
-  components: { Nav }
+  components: { Nav, Message }
 };
 </script>
 

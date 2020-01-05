@@ -100,8 +100,12 @@ export default {
       return axios
         .post(path, payload)
         .then(res => {
-          this.$emit("haAdd", res.data);
+          this.$store.state.backendResponse = res.data;
+          if (res.data) {
+            this.$store.state.showBackendMessage = true;
+          }
           if (res.data.status == "success") {
+            // Return true if submission was successful so promise can be chained to reset the form on success.
             return true;
           } else {
             return false;

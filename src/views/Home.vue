@@ -1,10 +1,5 @@
 <template>
   <div id="home" class="">
-    <Message
-      v-if="showMessage"
-      :response="response"
-      @messageCleared="resetResponseMessage()"
-    />
     <HousingAssociation
       v-for="(ha, index) in housingAssociations"
       :key="index"
@@ -19,19 +14,15 @@
 import axios from "axios";
 // @ is an alias to /src
 import HousingAssociation from "@/components/HousingAssociation";
-import Message from "@/components/Message";
 
 export default {
   name: "home",
   components: {
-    HousingAssociation,
-    Message
+    HousingAssociation
   },
   data() {
     return {
-      housingAssociations: [],
-      response: {},
-      showMessage: false
+      housingAssociations: []
     };
   },
   methods: {
@@ -53,10 +44,6 @@ export default {
       this.getHousingAssociations();
       this.response = response;
       this.showMessage = true;
-    },
-    resetResponseMessage() {
-      this.response = {};
-      this.showMessage = false;
     }
   },
   created() {
