@@ -40,8 +40,8 @@ export default {
         .post(path, payload)
         .then(res => {
           if (res.data) {
-            this.$store.state.showBackendMessage = true;
-            this.$store.state.backendResponse = res.data;
+            this.$store.commit("updateShowBackendMessage", true);
+            this.$store.commit("updateBackendMessage", res.data);
           }
           if (res.data.status == "success") {
             return true;
