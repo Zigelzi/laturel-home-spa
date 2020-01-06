@@ -6,7 +6,6 @@
       :housingAssociation="ha"
       @haDelete="updateHousingAssociations($event)"
     />
-    {{ housingAssociations }}
   </div>
 </template>
 

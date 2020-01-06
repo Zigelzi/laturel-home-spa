@@ -29,12 +29,11 @@
             >Kaupunki</TextInput
           >
           <NumberInput
-            @input="createAlphabet(housingAssociation.building_count)"
+            @input="createAlphabet(building_count)"
             inputName="building_count"
-            v-model="housingAssociation.building_count"
+            v-model="building_count"
             >Kuinka monta asuntoa taloyhtiössä on?</NumberInput
           >
-
           <div
             v-for="(building, index) in housingAssociation.buildings"
             :key="index"
@@ -77,9 +76,9 @@ export default {
         street_number: "",
         postal_code: "",
         city: "",
-        building_count: null,
         buildings: []
-      }
+      },
+      building_count: null
     };
   },
   methods: {
@@ -91,8 +90,8 @@ export default {
       this.housingAssociation.street_number = "";
       this.housingAssociation.postal_code = "";
       this.housingAssociation.city = "";
-      this.housingAssociation.building_count = null;
       this.housingAssociation.buildings = [];
+      this.building_count = null;
     },
     addHousingAssociation(payload) {
       // Sending form data to API to be added into DB
