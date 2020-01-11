@@ -16,8 +16,8 @@
 <script>
 import axios from "axios";
 
-import TextInput from "@/components/TextInput";
-import EmailInput from "@/components/EmailInput";
+import TextInput from "@/components/inputs/TextInput";
+import EmailInput from "@/components/inputs/EmailInput";
 
 export default {
   components: {

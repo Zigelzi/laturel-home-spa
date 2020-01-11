@@ -59,8 +59,8 @@
 
 <script>
 import axios from "axios";
-import TextInput from "@/components/TextInput";
-import NumberInput from "@/components/NumberInput";
+import TextInput from "@/components/inputs/TextInput";
+import NumberInput from "@/components/inputs/NumberInput";
 
 export default {
   components: {
@@ -95,7 +95,7 @@ export default {
     },
     addHousingAssociation(payload) {
       // Sending form data to API to be added into DB
-      const path = "/ha/get_all";
+      const path = "/ha/add";
       return axios
         .post(path, payload)
         .then(res => {
