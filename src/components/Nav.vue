@@ -8,6 +8,12 @@
       <li class="l-nav__nav-item">
         <router-link :to="{ name: 'settings' }">Asetukset</router-link>
       </li>
+      <li class="l-nav__nav-item">
+        <router-link :to="{ name: 'login' }">Kirjaudu sisään</router-link>
+      </li>
+      <li class="l-nav__nav-item">
+        <router-link :to="{ name: 'createAccount' }">Luo tili</router-link>
+      </li>
     </ul>
     <!-- eslint-disable-next-line -->
     <div class="l-nav__nav-close" @click="toggleNav"><<<</div>

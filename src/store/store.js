@@ -45,10 +45,14 @@ export const store = new Vuex.Store({
           //eslint-disable-next-line
           console.log(res)
           commit("authUser", userToken);
+          commit("updateShowBackendMessage", true);
+          commit("updateBackendMessage", res.data);
         })
         .catch(error => {
           //eslint-disable-next-line
           console.error(error)
+          commit("updateShowBackendMessage", true);
+          commit("updateBackendMessage", error.response.data);
         });
     },
     //eslint-disable-next-line
@@ -69,10 +73,14 @@ export const store = new Vuex.Store({
           //eslint-disable-next-line
           console.log(res)
           commit("authUser", userToken);
+          commit("updateShowBackendMessage", true);
+          commit("updateBackendMessage", res.data);
         })
         .catch(error => {
           //eslint-disable-next-line
           console.error(error)
+          commit("updateShowBackendMessage", true);
+          commit("updateBackendMessage", error.response.data);
         });
     }
   }
