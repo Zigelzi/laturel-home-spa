@@ -9,6 +9,15 @@ import { store } from "./store/store";
 Vue.config.productionTip = false;
 axios.defaults.baseURL = "http://localhost:5000/";
 
+// Set Axios interceptor to inject the JWT to all requests
+axios.interceptors.request.use(config => {
+  const userToken = JSON.parse(localStorage.getItem("userToken"));
+  if (userToken) {
+    config.headers.Authorization = "Bearer " + userToken;
+  }
+  return config;
+});
+
 new Vue({
   router,
   store,

@@ -10,7 +10,6 @@ export const store = new Vuex.Store({
     showBackendMessage: false,
     userData: {
       idToken: null
-      // userId: null
     }
   },
   mutations: {
@@ -21,8 +20,7 @@ export const store = new Vuex.Store({
       state.showBackendMessage = showState;
     },
     authUser(state, userData) {
-      state.userData.idToken = userData.token;
-      //state.userData.userId = userData.userId;
+      state.userData = { ...userData };
     }
   },
   actions: {
@@ -67,12 +65,12 @@ export const store = new Vuex.Store({
       axios
         .post(path, payload)
         .then(res => {
-          const userToken = {
-            token: res.data.auth_token
-          };
+          const user = { ...res.data.user };
           //eslint-disable-next-line
           console.log(res)
-          commit("authUser", userToken);
+          // Set the JWT to Vuex and store it as cookie
+          commit("authUser", user);
+          localStorage.setItem("userToken", JSON.stringify(user.auth_token));
           commit("updateShowBackendMessage", true);
           commit("updateBackendMessage", res.data);
         })
