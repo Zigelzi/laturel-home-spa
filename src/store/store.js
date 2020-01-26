@@ -24,7 +24,6 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    //eslint-disable-next-line
     signup({ commit }, authData) {
       // Post the sign up data to backend
       const path = "/auth/signup";
@@ -53,7 +52,6 @@ export const store = new Vuex.Store({
           commit("updateBackendMessage", error.response.data);
         });
     },
-    //eslint-disable-next-line
     login({ commit }, authData) {
       const path = "/auth/login";
       const payload = {
@@ -80,6 +78,11 @@ export const store = new Vuex.Store({
           commit("updateShowBackendMessage", true);
           commit("updateBackendMessage", error.response.data);
         });
+    }
+  },
+  getters: {
+    isAuthenticated(state) {
+      return state.userData.idToken !== null;
     }
   }
 });

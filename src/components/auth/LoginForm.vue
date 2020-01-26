@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h1>Laturel Koti</h1>
+      <h1 class="content-title">Laturel Koti</h1>
       <p>Tervetuloa takaisin Kotiin!</p>
     </div>
     <form action="">
