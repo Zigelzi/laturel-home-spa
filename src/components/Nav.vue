@@ -43,6 +43,9 @@ export default {
   computed: {
     auth() {
       return this.$store.getters.isAuthenticated;
+    },
+    userData() {
+      return this.$store.getters.getUserData;
     }
   }
 };

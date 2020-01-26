@@ -1,52 +1,29 @@
 <template>
-  <div id="home" class="">
-    <HousingAssociation
-      v-for="(ha, index) in housingAssociations"
-      :key="index"
-      :housingAssociation="ha"
-      @haDelete="updateHousingAssociations($event)"
-    />
+  <div>
+    <h1 class="content-title">Tervetuloa Kotiin!</h1>
+    <p>{{ userData.name }}</p>
+    <p>{{ userData.email }}</p>
+    <p>Taloyhtiö: {{ userData.housing_association.name }}</p>
+    <p>Y-tunnus: {{ userData.housing_association.business_id }}</p>
+    <p>
+      Osoite: {{ userData.housing_association.street }}
+      {{ userData.housing_association.street_number }},
+      {{ userData.housing_association.postal_code }}
+      {{ userData.housing_association.city }}
+    </p>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-// @ is an alias to /src
-import HousingAssociation from "@/components/HousingAssociation";
-
 export default {
-  name: "home",
-  components: {
-    HousingAssociation
-  },
   data() {
-    return {
-      housingAssociations: []
-    };
+    return {};
   },
-  methods: {
-    getHousingAssociations() {
-      // Get the existing housing associations from the database and add them to the data property
-      const path = "/ha/get_all";
-      axios
-        .get(path)
-        .then(res => {
-          // On successful response add the retrieved data to housingAssociations array
-          this.housingAssociations = res.data.housingAssociations;
-        })
-        .catch(error => {
-          // eslint-disable-next-line
-          console.error(error)
-        });
-    },
-    updateHousingAssociations(response) {
-      this.getHousingAssociations();
-      this.response = response;
-      this.showMessage = true;
+  methods: {},
+  computed: {
+    userData() {
+      return this.$store.state.userData;
     }
-  },
-  created() {
-    this.getHousingAssociations();
   }
 };
 </script>

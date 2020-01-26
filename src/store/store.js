@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import router from "../router";
 
 Vue.use(Vuex);
 
@@ -75,6 +76,7 @@ export const store = new Vuex.Store({
           localStorage.setItem("auth_token", JSON.stringify(user.auth_token));
           commit("updateShowBackendMessage", true);
           commit("updateBackendMessage", res.data);
+          router.push({ name: "home" });
         })
         .catch(error => {
           //eslint-disable-next-line
@@ -85,6 +87,7 @@ export const store = new Vuex.Store({
     },
     logout({ commit }) {
       commit("clearAuthData");
+      router.replace({ name: "login" });
     }
   },
   getters: {
