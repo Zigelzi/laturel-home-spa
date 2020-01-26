@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
     backendResponse: {},
     showBackendMessage: false,
     userData: {
-      idToken: null
+      auth_token: null
     }
   },
   mutations: {
@@ -21,6 +21,10 @@ export const store = new Vuex.Store({
     },
     authUser(state, userData) {
       state.userData = { ...userData };
+    },
+    clearAuthData(state) {
+      state.userData.auth_token = null;
+      localStorage.removeItem("auth_token");
     }
   },
   actions: {
@@ -68,7 +72,7 @@ export const store = new Vuex.Store({
           console.log(res)
           // Set the JWT to Vuex and store it as cookie
           commit("authUser", user);
-          localStorage.setItem("userToken", JSON.stringify(user.auth_token));
+          localStorage.setItem("auth_token", JSON.stringify(user.auth_token));
           commit("updateShowBackendMessage", true);
           commit("updateBackendMessage", res.data);
         })
@@ -78,11 +82,14 @@ export const store = new Vuex.Store({
           commit("updateShowBackendMessage", true);
           commit("updateBackendMessage", error.response.data);
         });
+    },
+    logout({ commit }) {
+      commit("clearAuthData");
     }
   },
   getters: {
     isAuthenticated(state) {
-      return state.userData.idToken !== null;
+      return state.userData.auth_token !== null;
     }
   }
 });

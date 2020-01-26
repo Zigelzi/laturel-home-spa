@@ -52,13 +52,18 @@
     }
 }
 
-.l-nav__nav-close {
+.l-nav-bottom {
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    color: $gray-800;
-    cursor: pointer;
+    
+
+    .l-nav__nav-close {
+        color: $gray-800;
+        cursor: pointer;
+
+    }
 }
 
 // Main container and sections

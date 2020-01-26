@@ -19,9 +19,13 @@
         </li>
       </div>
     </ul>
-    <div class="l-nav__nav-item"></div>
-    <!-- eslint-disable-next-line -->
-    <div class="l-nav__nav-close" @click="toggleNav"><<<</div>
+    <div class="l-nav-bottom">
+      <button class="btn btn-danger" @click="onLogout" v-if="auth">
+        Log out
+      </button>
+      <!-- eslint-disable-next-line -->
+      <div class="l-nav__nav-close" @click="toggleNav"><<<</div>
+    </div>
   </nav>
 </template>
 
@@ -31,6 +35,9 @@ export default {
     toggleNav() {
       const navContainer = document.getElementById("l-nav-container");
       navContainer.classList.toggle("l-nav__nav--minimized");
+    },
+    onLogout() {
+      this.$store.dispatch("logout");
     }
   },
   computed: {
