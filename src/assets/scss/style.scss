@@ -9,5 +9,8 @@
         'base/base',
         'base/normalize';
 
-// Components and animations
+// Components
 @import 'components/components';
+
+// Animations
+@import 'transitions/animations';

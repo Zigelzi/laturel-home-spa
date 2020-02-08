@@ -1,5 +1,9 @@
 <template>
-  <div class="messages" v-if="showBackendMessage">
+  <div
+    class="messages"
+    :class="backendResponse.status"
+    v-if="showBackendMessage"
+  >
     <p>Status: {{ backendResponse.status }}</p>
     <p>Message: {{ backendResponse.message }}</p>
     <button class="btn btn-primary" @click="hideMessage()">

@@ -11,11 +11,23 @@
       {{ userData.housing_association.postal_code }}
       {{ userData.housing_association.city }}
     </p>
+    <div>
+      <Building
+        v-for="(building, index) in userData.housing_association.buildings"
+        :key="index"
+        :building="building"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import Building from "@/components/Building";
+
 export default {
+  components: {
+    Building
+  },
   data() {
     return {};
   },

@@ -77,10 +77,35 @@
     max-width: 400px;
     text-align: center;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid gray;
+    margin: 0 auto;
+    border-radius: 3px 0 0 3px;
+    position: fixed;
+    top: 20px;
+    left: 42%;
+    z-index:2;
+
+    // Start from 0 opacity and fade the container in and out
+    //opacity: 0;
+    animation: fade-in-out ease-in 5s forwards;
+    p {
+        color: $gray-900;
+        margin: 0 0 5px 0;
+    }
+}
+
+.success {
+    border-left: 4px solid $accent-green-800;
+    background-color: $accent-green-600;
+}
+
+.fail {
+    border-left: 4px solid $accent-red-800;
+    background-color: $accent-red-300;
 }
 
 .content-title {
-    margin-top: 0;
+    margin-top: 0px;
+    padding-top: 20px;
 }
+
+// Building and HousingAssociation components
