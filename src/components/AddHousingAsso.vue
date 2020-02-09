@@ -100,7 +100,10 @@ export default {
         .post(path, payload)
         .then(res => {
           if (res.data) {
-            this.$store.commit("updateBackendMessage", res.data);
+            this.$store.commit("updateBackendMessage", {
+              message: res.data.message,
+              status: res.data.status
+            });
           }
           if (res.data.status == "success") {
             // Return true if submission was successful so promise can be chained to reset the form on success.

@@ -41,7 +41,10 @@ export default {
         .then(res => {
           if (res.data) {
             this.$store.commit("updateShowBackendMessage", true);
-            this.$store.commit("updateBackendMessage", res.data);
+            this.$store.commit("updateBackendMessage", {
+              message: res.data.message,
+              status: res.data.status
+            });
           }
           if (res.data.status == "success") {
             return true;

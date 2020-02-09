@@ -9,22 +9,26 @@ export const store = new Vuex.Store({
   state: {
     backendResponse: {},
     showBackendMessage: false,
-    userData: {
-      auth_token: null
+    user: {
+      auth_token: null,
+      id: null
     }
   },
   mutations: {
+    //eslint-disable-next-line
     updateBackendMessage: (state, backendResponse) => {
-      state.backendResponse = backendResponse;
+      state.backendResponse.message = backendResponse.message;
+      state.backendResponse.status = backendResponse.status;
     },
     updateShowBackendMessage: (state, showState) => {
       state.showBackendMessage = showState;
     },
     authUser(state, userData) {
-      state.userData = { ...userData };
+      state.user = { ...userData };
     },
     clearAuthData(state) {
-      state.userData.auth_token = null;
+      state.user.auth_token = null;
+      state.user.id = null;
       localStorage.removeItem("auth_token");
     }
   },
@@ -41,20 +45,29 @@ export const store = new Vuex.Store({
       axios
         .post(path, payload)
         .then(res => {
+          const user = { ...res.data.user };
           const userToken = {
             token: res.data.auth_token
           };
           //eslint-disable-next-line
           console.log(res)
           commit("authUser", userToken);
+          localStorage.setItem("auth_token", user.auth_token);
+          localStorage.setItem("userId", user.id);
           commit("updateShowBackendMessage", true);
-          commit("updateBackendMessage", res.data);
+          commit("updateBackendMessage", {
+            message: res.data.message,
+            status: res.data.status
+          });
         })
         .catch(error => {
           //eslint-disable-next-line
           console.error(error)
           commit("updateShowBackendMessage", true);
-          commit("updateBackendMessage", error.response.data);
+          commit("updateBackendMessage", {
+            message: error.response.data.message,
+            status: error.response.data.status
+          });
         });
     },
     login({ commit }, authData) {
@@ -70,29 +83,53 @@ export const store = new Vuex.Store({
         .then(res => {
           const user = { ...res.data.user };
           //eslint-disable-next-line
-          console.log(res)
+          console.log('Message: ' + res.data.message)
+
+          //eslint-disable-next-line
+          console.log('Status: ' + res.data.status)
           // Set the JWT to Vuex and store it as cookie
           commit("authUser", user);
-          localStorage.setItem("auth_token", JSON.stringify(user.auth_token));
+          localStorage.setItem("auth_token", user.auth_token);
+          localStorage.setItem("userId", user.id);
           commit("updateShowBackendMessage", true);
-          commit("updateBackendMessage", res.data);
+          commit("updateBackendMessage", {
+            message: res.data.message,
+            status: res.data.status
+          });
           router.push({ name: "home" });
         })
         .catch(error => {
           //eslint-disable-next-line
           console.error(error)
           commit("updateShowBackendMessage", true);
-          commit("updateBackendMessage", error.response.data);
+          commit("updateBackendMessage", {
+            message: error.response.data.message,
+            status: error.response.data.status
+          });
         });
     },
     logout({ commit }) {
       commit("clearAuthData");
       router.replace({ name: "login" });
+    },
+
+    tryAutoLogin({ commit }) {
+      const token = localStorage.getItem("auth_token");
+      if (token) {
+        const userId = localStorage.getItem("userId");
+        const path = "/user/" + userId;
+        axios.get(path).then(res => {
+          const user = res.data.user;
+          commit("authUser", user);
+          //eslint-disable-next-line
+          console.log(res)
+        });
+      }
     }
   },
   getters: {
     isAuthenticated(state) {
-      return state.userData.auth_token !== null;
+      return state.user.auth_token !== null;
     }
   }
 });

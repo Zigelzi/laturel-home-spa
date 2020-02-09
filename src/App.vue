@@ -12,7 +12,10 @@
 import Nav from "@/components/Nav";
 import Message from "@/components/Message";
 export default {
-  components: { Nav, Message }
+  components: { Nav, Message },
+  mounted() {
+    this.$store.dispatch("tryAutoLogin");
+  }
 };
 </script>
 
