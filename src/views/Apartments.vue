@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Huoneistot</h1>
+    <h1 class="content-title">Huoneistot</h1>
     <div>
       <Building
         v-for="(building, index) in user.housing_association.buildings"

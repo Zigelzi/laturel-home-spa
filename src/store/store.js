@@ -59,6 +59,7 @@ export const store = new Vuex.Store({
             message: res.data.message,
             status: res.data.status
           });
+          router.push({ name: "overview" });
         })
         .catch(error => {
           //eslint-disable-next-line
@@ -82,11 +83,6 @@ export const store = new Vuex.Store({
         .post(path, payload)
         .then(res => {
           const user = { ...res.data.user };
-          //eslint-disable-next-line
-          console.log('Message: ' + res.data.message)
-
-          //eslint-disable-next-line
-          console.log('Status: ' + res.data.status)
           // Set the JWT to Vuex and store it as cookie
           commit("authUser", user);
           localStorage.setItem("auth_token", user.auth_token);

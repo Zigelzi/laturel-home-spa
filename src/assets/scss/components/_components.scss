@@ -108,4 +108,22 @@
     padding-top: 20px;
 }
 
+// General components
+.tabs-menu {
+    display: inline-block;
+    padding: 0;
+    .tab {
+        display: inline-block;
+        list-style: none;
+        padding: 10px;
+    }
+    .tab__active {
+        background-color: $primary-blue-500;
+        a {
+            color: white;
+        }
+    }
+}
+
 // Building and HousingAssociation components
+
