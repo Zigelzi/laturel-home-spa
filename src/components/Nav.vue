@@ -4,7 +4,21 @@
     <ul class="l-nav-menu ">
       <div class="logged-in" v-if="auth">
         <li class="l-nav__nav-item">
-          <router-link :to="{ name: 'home' }">Yleiskatsaus</router-link>
+          <router-link :to="{ name: 'overview' }">Yleiskatsaus</router-link>
+        </li>
+        <li class="l-nav__nav-item">
+          <router-link :to="{ name: 'housingAssociation' }"
+            >Taloyhtiö</router-link
+          >
+        </li>
+        <li class="l-nav__nav-item">
+          <router-link :to="{ name: 'apartments' }">Huoneistot</router-link>
+        </li>
+        <li class="l-nav__nav-item">
+          <router-link :to="{ name: 'services' }">Huolto</router-link>
+        </li>
+        <li class="l-nav__nav-item">
+          <router-link :to="{ name: 'communications' }">Tiedotteet</router-link>
         </li>
         <li class="l-nav__nav-item">
           <router-link :to="{ name: 'settings' }">Asetukset</router-link>

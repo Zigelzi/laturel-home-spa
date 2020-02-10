@@ -15,7 +15,6 @@ import axios from "axios";
 import HousingAssociation from "@/components/HousingAssociation";
 
 export default {
-  name: "home",
   components: {
     HousingAssociation
   },

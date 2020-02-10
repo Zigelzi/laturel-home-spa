@@ -96,7 +96,7 @@ export const store = new Vuex.Store({
             message: res.data.message,
             status: res.data.status
           });
-          router.push({ name: "home" });
+          router.push({ name: "overview" });
         })
         .catch(error => {
           //eslint-disable-next-line
