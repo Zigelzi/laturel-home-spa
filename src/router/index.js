@@ -19,6 +19,8 @@ import Overview from "@/views/overview/Overview";
 
 // Service views
 import Service from "@/views/service/Service";
+import CreateCategory from "@/views/service/CreateCategory";
+import CreateRepair from "@/views/service/CreateRepair";
 
 // General views
 import AllHousingAssociations from "@/views/AllHousingAssociations";
@@ -28,7 +30,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/yleiskatsaus",
     name: "overview",
     component: Overview
   },
@@ -65,7 +67,19 @@ const routes = [
   {
     path: "/huolto",
     name: "repair",
-    component: Service
+    component: Service,
+    children: [
+      {
+        path: "luo_kategoria",
+        name: "createCategory",
+        component: CreateCategory
+      },
+      {
+        path: "luo_korjaus",
+        name: "createRepair",
+        component: CreateRepair
+      }
+    ]
   },
   {
     path: "/kirjaudu",

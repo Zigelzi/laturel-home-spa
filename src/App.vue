@@ -3,7 +3,7 @@
     <Nav />
     <div class="l-main-container">
       <Message />
-      <router-view />
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -11,6 +11,7 @@
 <script>
 import Nav from "@/components/Nav";
 import Message from "@/components/Message";
+
 export default {
   components: { Nav, Message },
   mounted() {
