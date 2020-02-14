@@ -1,6 +1,10 @@
 <template>
   <div>
-    <CreateAccountForm><h1>Rekisteröidy Laturel Kotiin</h1></CreateAccountForm>
+    <CreateAccountForm
+      ><h1 class="content-title">
+        Rekisteröidy Laturel Kotiin
+      </h1></CreateAccountForm
+    >
   </div>
 </template>
 

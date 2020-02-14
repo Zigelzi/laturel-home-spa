@@ -15,10 +15,10 @@
           <router-link :to="{ name: 'apartments' }">Huoneistot</router-link>
         </li>
         <li class="l-nav__nav-item">
-          <router-link :to="{ name: 'services' }">Huolto</router-link>
+          <router-link :to="{ name: 'service' }">Huolto</router-link>
         </li>
         <li class="l-nav__nav-item">
-          <router-link :to="{ name: 'communications' }">Tiedotteet</router-link>
+          <router-link :to="{ name: 'communication' }">Tiedotteet</router-link>
         </li>
         <li class="l-nav__nav-item">
           <router-link :to="{ name: 'settings' }">Asetukset</router-link>

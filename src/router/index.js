@@ -1,14 +1,28 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Overview from "@/views/Overview";
-import HousingAssociation from "@/views/HousingAssociation";
-import Apartments from "@/views/Apartments";
-import Services from "@/views/Services";
-import Communications from "@/views/Communications";
+
+// Apartments views
+import Apartments from "@/views/apartments/Apartments";
+
+// Auth views
+import Login from "@/views/auth/Login";
+import CreateAccount from "@/views/auth/CreateAccount";
+
+// Communication views
+import Communication from "@/views/communication/Communication";
+
+// Housing Association views
+import HousingAssociation from "@/views/housing-association/HousingAssociation";
+
+// Overview views
+import Overview from "@/views/overview/Overview";
+
+// Service views
+import Service from "@/views/service/Service";
+
+// General views
 import AllHousingAssociations from "@/views/AllHousingAssociations";
 import Settings from "@/views/Settings";
-import Login from "@/views/Login";
-import CreateAccount from "@/views/CreateAccount";
 
 Vue.use(VueRouter);
 
@@ -30,13 +44,13 @@ const routes = [
   },
   {
     path: "/huolto",
-    name: "services",
-    component: Services
+    name: "service",
+    component: Service
   },
   {
     path: "/tiedotteet",
-    name: "communications",
-    component: Communications
+    name: "communication",
+    component: Communication
   },
   {
     path: "/kaikki_taloyhtiot",
@@ -50,7 +64,8 @@ const routes = [
   },
   {
     path: "/huolto",
-    name: "repairs"
+    name: "repair",
+    component: Service
   },
   {
     path: "/kirjaudu",
