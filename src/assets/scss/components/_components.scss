@@ -44,11 +44,22 @@
         text-decoration: none;
         list-style: none;
         font-size: 18px;
-        background: $primary-blue-500;
+        background: $primary-blue-300;
         height: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .l-nav__nav-icon {
+        opacity: 0.5;
+    }
+
+    .router-link-exact-active {
+        background: $primary-blue-500;
+        .l-nav__nav-icon {
+            opacity: 1;
+        }
     }
 }
 
@@ -125,5 +136,10 @@
     }
 }
 
+// Icons
+
+.icon-m {
+    width: 50px;
+}
 // Building and HousingAssociation components
 
