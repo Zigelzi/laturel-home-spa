@@ -2,9 +2,7 @@
   <div>
     <div>
       <h2>Kategoriat</h2>
-      <p v-for="(category, index) in categories" :key="index">
-        {{ category.name }} - {{ category.description }}
-      </p>
+      <Tabs :tabs="categories" />
     </div>
     <CreateCategoryForm @categoryAdded="getCategories" />
   </div>
@@ -12,9 +10,12 @@
 <script>
 import axios from "axios";
 import CreateCategoryForm from "@/components/service/CreateCategoryForm";
+import Tabs from "@/components/common/Tabs";
+
 export default {
   components: {
-    CreateCategoryForm
+    CreateCategoryForm,
+    Tabs
   },
   data() {
     return {

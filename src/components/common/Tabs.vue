@@ -6,16 +6,16 @@
           v-for="(tab, index) in tabs"
           :key="index"
           class="tab"
-          :class="{ tab__active: isActive(tab.activeName) }"
+          :class="{ tab__active: isActive(tab.name) }"
         >
-          <a :href="tab.link" @click="setActive(tab.activeName)">
-            {{ tab.title }}
+          <a :href="'#' + tab.name" @click="setActive(tab.name)">
+            {{ tab.name }}
           </a>
         </li>
       </ul>
       <div class="tabs-content">
         <div class="tab-pane">
-          {{ activeTab.content }}
+          {{ activeTab.description }}
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      activeItem: this.tabs[0].activeName
+      activeItem: this.tabs[0].name
     };
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
   computed: {
     activeTab() {
       // Filter the tabs array to match currently selected item from the tabs
-      return this.tabs.filter(tab => tab.activeName === this.activeItem)[0];
+      return this.tabs.filter(tab => tab.name === this.activeItem)[0];
     }
   }
 };
