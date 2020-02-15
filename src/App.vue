@@ -10,7 +10,7 @@
 
 <script>
 import Nav from "@/components/navigation/Nav";
-import Message from "@/components/Message";
+import Message from "@/components/common/Message";
 
 export default {
   components: { Nav, Message },

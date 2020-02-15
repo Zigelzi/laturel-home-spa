@@ -1,6 +1,8 @@
 <template>
   <div>
-    <slot></slot>
+    <h1 class="content-title">
+      Rekisteröidy Laturel Kotiin
+    </h1>
     <p class="form-error">{{ formError }}</p>
     <form action="">
       <TextInput inputName="userName" v-model="formData.name">Nimi</TextInput>
