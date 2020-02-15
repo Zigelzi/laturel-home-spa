@@ -19,7 +19,7 @@ import Overview from "@/views/overview/Overview";
 
 // Service views
 import Service from "@/views/service/Service";
-import CreateCategory from "@/views/service/CreateCategory";
+import RepairCategories from "@/views/service/RepairCategories";
 import CreateRepair from "@/views/service/CreateRepair";
 
 // General views
@@ -71,8 +71,8 @@ const routes = [
     children: [
       {
         path: "luo_kategoria",
-        name: "createCategory",
-        component: CreateCategory
+        name: "repairCategories",
+        component: RepairCategories
       },
       {
         path: "luo_korjaus",

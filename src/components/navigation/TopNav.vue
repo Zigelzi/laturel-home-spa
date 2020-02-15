@@ -9,7 +9,7 @@
     <router-link
       class="top-nav__nav-item"
       tag="li"
-      :to="{ name: 'createCategory' }"
+      :to="{ name: 'repairCategories' }"
       >Luo kategoria</router-link
     >
   </div>

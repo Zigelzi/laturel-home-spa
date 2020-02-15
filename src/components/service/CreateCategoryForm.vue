@@ -46,16 +46,17 @@ export default {
         .post(path, payload)
         .then(res => {
           //eslint-disable-next-line
-            console.log(res)
+          console.log(res)
           this.$store.commit("updateShowBackendMessage", true);
           this.$store.commit("updateBackendMessage", {
             message: res.data.message,
             status: res.data.status
           });
+          this.$emit("categoryAdded");
         })
         .catch(error => {
           //eslint-disable-next-line
-              console.error(error)
+          console.error(error)
           this.$store.commit("updateShowBackendMessage", true);
           this.$store.commit("updateBackendMessage", {
             message: error.response.data.message,
