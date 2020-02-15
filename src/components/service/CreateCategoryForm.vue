@@ -45,8 +45,6 @@ export default {
       axios
         .post(path, payload)
         .then(res => {
-          //eslint-disable-next-line
-          console.log(res)
           this.$store.commit("updateShowBackendMessage", true);
           this.$store.commit("updateBackendMessage", {
             message: res.data.message,

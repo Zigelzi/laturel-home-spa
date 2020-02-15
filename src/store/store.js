@@ -49,8 +49,6 @@ export const store = new Vuex.Store({
           const userToken = {
             token: res.data.auth_token
           };
-          //eslint-disable-next-line
-          console.log(res)
           commit("authUser", userToken);
           localStorage.setItem("auth_token", user.auth_token);
           localStorage.setItem("userId", user.id);
@@ -117,8 +115,6 @@ export const store = new Vuex.Store({
         axios.get(path).then(res => {
           const user = res.data.user;
           commit("authUser", user);
-          //eslint-disable-next-line
-          console.log(res)
         });
       }
     }
