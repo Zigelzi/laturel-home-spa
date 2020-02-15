@@ -30,7 +30,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/yleiskatsaus",
+    path: "/",
     name: "overview",
     component: Overview
   },

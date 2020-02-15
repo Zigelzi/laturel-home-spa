@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import AddHousingAsso from "@/components/AddHousingAsso";
-import AddUser from "@/components/AddUser";
+import AddHousingAsso from "@/components/settings/AddHousingAsso";
+import AddUser from "@/components/settings/AddUser";
 
 export default {
   components: {

@@ -80,6 +80,7 @@
 .top-nav__container {
     width: 100%;
     display: flex;
+    justify-content: center;
     background: $primary-blue-100;
     .top-nav__nav-item {
         list-style: none;

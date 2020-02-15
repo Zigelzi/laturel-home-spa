@@ -1,5 +1,3 @@
 <template>
-  <div>
-    Create category
-  </div>
+  <div></div>
 </template>

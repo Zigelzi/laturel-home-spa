@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Nav from "@/components/Nav";
+import Nav from "@/components/navigation/Nav";
 import Message from "@/components/Message";
 
 export default {

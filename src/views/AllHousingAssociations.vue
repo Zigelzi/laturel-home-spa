@@ -12,7 +12,7 @@
 <script>
 import axios from "axios";
 // @ is an alias to /src
-import HousingAssociation from "@/components/HousingAssociation";
+import HousingAssociation from "@/components/housing-association/HousingAssociation";
 
 export default {
   components: {

@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import Apartment from "@/components/Apartment";
+import Apartment from "@/components/apartments/Apartment";
 
 export default {
   components: {

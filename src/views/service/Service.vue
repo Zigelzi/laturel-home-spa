@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import TopNav from "@/components/TopNav";
+import TopNav from "@/components/navigation/TopNav";
 
 export default {
   components: { TopNav }

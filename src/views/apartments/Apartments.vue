@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Building from "@/components/Building";
+import Building from "@/components/apartments/Building";
 
 export default {
   components: {

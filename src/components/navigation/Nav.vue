@@ -3,7 +3,11 @@
     <h1 class="l-nav__title">Laturel Koti</h1>
     <ul class="l-nav-menu ">
       <div class="logged-in" v-if="auth">
-        <router-link tag="li" class="l-nav__nav-item" :to="{ name: 'overview' }"
+        <router-link
+          tag="li"
+          class="l-nav__nav-item"
+          :to="{ name: 'overview' }"
+          exact
           ><div class="icon-m l-nav__nav-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
