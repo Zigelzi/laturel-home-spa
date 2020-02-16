@@ -1,8 +1,7 @@
 <template>
   <div>
     <div>
-      <h2>Kategoriat</h2>
-      <Tabs :tabs="categories" />
+      <RepairTabs />
     </div>
     <CreateCategoryForm @categoryAdded="getCategories" />
   </div>
@@ -10,20 +9,19 @@
 <script>
 import axios from "axios";
 import CreateCategoryForm from "@/components/service/CreateCategoryForm";
-import Tabs from "@/components/common/Tabs";
+import RepairTabs from "@/components/service/RepairTabs";
 
 export default {
   components: {
     CreateCategoryForm,
-    Tabs
+    RepairTabs
   },
   data() {
-    return {
-      categories: []
-    };
+    return {};
   },
   methods: {
     getCategories() {
+      // Get the categories from backend to be listed on tabs
       const path = "/ha/repair_category";
       axios
         .get(path)
@@ -35,9 +33,6 @@ export default {
         console.error(error)
         });
     }
-  },
-  created() {
-    this.getCategories();
   }
 };
 </script>
