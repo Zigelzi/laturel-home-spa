@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <RepairTabs />
+      <RepairTabs :categories="categories" @categoryDeleted="getCategories" />
     </div>
     <CreateCategoryForm @categoryAdded="getCategories" />
   </div>
@@ -17,7 +17,9 @@ export default {
     RepairTabs
   },
   data() {
-    return {};
+    return {
+      categories: []
+    };
   },
   methods: {
     getCategories() {
@@ -33,6 +35,9 @@ export default {
         console.error(error)
         });
     }
+  },
+  created() {
+    this.getCategories();
   }
 };
 </script>

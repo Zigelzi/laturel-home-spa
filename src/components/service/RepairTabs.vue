@@ -30,9 +30,11 @@
 import axios from "axios";
 
 export default {
+  props: {
+    categories: Array
+  },
   data() {
     return {
-      categories: [],
       activeItem: "Katto"
     };
   },
@@ -43,22 +45,28 @@ export default {
     setActive(menuItem) {
       this.activeItem = menuItem;
     },
-    getCategories() {
-      // Get the categories from backend to be listed on tabs
-      const path = "/ha/repair_category";
+    removeCategory(categoryId) {
+      const path = "/ha/repair_category/";
       axios
-        .get(path)
+        .delete(path + categoryId)
         .then(res => {
-          this.categories = res.data.repairCategories;
+          this.$store.commit("updateBackendMessage", {
+            message: res.data.message,
+            status: res.data.status
+          });
+          this.$store.commit("updateShowBackendMessage", true);
+          this.$emit("categoryDeleted");
+          this.activeItem = this.categories[0].name;
         })
         .catch(error => {
           //eslint-disable-next-line
-        console.error(error)
+          console.error(error);
+          this.$store.commit("updateBackendMessage", {
+            message: error.response.data.message,
+            status: error.response.data.status
+          });
+          this.$store.commit("updateShowBackendMessage", true);
         });
-    },
-    removeCategory(categoryId) {
-      //eslint-disable-next-line
-      console.log(categoryId)
     }
   },
   computed: {
@@ -74,9 +82,6 @@ export default {
       }
       return activeTab;
     }
-  },
-  created() {
-    this.getCategories();
   }
 };
 </script>
