@@ -52,6 +52,7 @@ export const store = new Vuex.Store({
           commit("authUser", userToken);
           localStorage.setItem("auth_token", user.auth_token);
           localStorage.setItem("userId", user.id);
+          localStorage.setItem("haId", user.housing_association.id);
           commit("updateShowBackendMessage", true);
           commit("updateBackendMessage", {
             message: res.data.message,
@@ -85,6 +86,7 @@ export const store = new Vuex.Store({
           commit("authUser", user);
           localStorage.setItem("auth_token", user.auth_token);
           localStorage.setItem("userId", user.id);
+          localStorage.setItem("haId", user.housing_association.id);
           commit("updateShowBackendMessage", true);
           commit("updateBackendMessage", {
             message: res.data.message,
