@@ -7,7 +7,6 @@
       class="form-control"
       @input="inputChanged"
     >
-      <option value="">Ladataan...</option>
       <option
         v-for="(option, index) in options"
         :key="index"
