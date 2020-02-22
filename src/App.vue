@@ -14,7 +14,7 @@ import Message from "@/components/common/Message";
 
 export default {
   components: { Nav, Message },
-  mounted() {
+  created() {
     this.$store.dispatch("tryAutoLogin");
   }
 };
