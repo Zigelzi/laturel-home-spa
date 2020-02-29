@@ -5,7 +5,7 @@
       Luo uusi korjauskategoria jolla voit etsiä ja lajitella taloyhtiön
       korjauksia
     </p>
-    <form action="">
+    <form action="" class="form-container">
       <TextInput inputName="categoryName" v-model="category.name"
         >Kategorian nimi
       </TextInput>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <form action="">
+      <form action="" class="form-container">
         <div class="col">
           <h1>Lisää uusi taloyhtiö</h1>
           <TextInput inputName="name" v-model="housingAssociation.name"

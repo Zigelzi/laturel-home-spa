@@ -1,6 +1,5 @@
 <template>
   <div>
-    Luo korjaus
     <div>
       <CreateRepairForm />
     </div>

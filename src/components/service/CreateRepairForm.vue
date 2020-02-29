@@ -2,7 +2,7 @@
   <div>
     <h3>Luo korjaus</h3>
     <p>Luo uusi korjaus taloyhtiölle</p>
-    <form action="">
+    <form action="" class="form-container">
       <TextInput inputName="repairTitle" v-model="repair.title">Nimi</TextInput>
       <DateInput inputName="repairDate" v-model="repair.repair_date"
         >Valmistumispäivämäärä</DateInput

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="container">
-      <form action="">
+      <form action="" class="form-container">
         <div class="col">
           <TextInput inputName="userName" v-model="user.name">Nimi</TextInput>
           <EmailInput inputName="email" v-model="user.email"

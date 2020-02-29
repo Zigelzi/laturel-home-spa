@@ -2,12 +2,15 @@
   <div>
     <TopNav />
     <h1 class="content-title">Huoltotiedot</h1>
-    <router-view></router-view>
-    <div v-for="(repair, index) in repairs" :key="index">
-      <h4>{{ repair.description }}</h4>
-      <p>Kategoria: {{ repair.repair_category.name }}</p>
-      <p>Valmistumispäivämäärä: {{ repair.repair_date }}</p>
+    <div class="cards-container">
+      <div v-for="(repair, index) in repairs" :key="index" class="laturel-card">
+        <h4>{{ repair.description }}</h4>
+        <p>Kategoria: {{ repair.repair_category.name }}</p>
+        <p>Valmistumispäivämäärä: {{ repair.repair_date }}</p>
+      </div>
     </div>
+
+    <router-view class="router-container"></router-view>
   </div>
 </template>
 <script>

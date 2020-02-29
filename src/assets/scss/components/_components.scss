@@ -173,10 +173,36 @@
     padding-left: 10px;
 }
 
-// Icons
+.router-container {
+    margin-top: 50px;
+    background-color: $gray-100;
+}
 
+.cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.laturel-card {
+    flex-basis: 500px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.4);
+    transition: box-shadow 0.2s ease;
+    &:hover {
+        box-shadow: 0px 1px 15px 2px rgba(0,0,0,0.4);
+    }
+}
+
+// Icons
 .icon-m {
     width: 50px;
 }
 // Building and HousingAssociation components
 
+// Forms
+.form-container {
+    max-width: 500px;
+    margin: 25px auto;
+}
